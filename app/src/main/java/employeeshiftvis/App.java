@@ -5,40 +5,19 @@ package employeeshiftvis;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
 
-public class App {
-
-    ArrayList<Shift> shiftList = new ArrayList<Shift>();
-    static Button b[][] = new Button[1][18];
+public class App extends JPanel {
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Employee Shift Visualization");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 100);
+        JFrame mainFrame = new JFrame();
+        mainFrame.setPreferredSize(new Dimension(1100, 800));
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ShiftVis vis = new ShiftVis("Steven");
+        ShiftCreatePanel panel = new ShiftCreatePanel();
 
-        Button createShift = new Button("Create Shift");
-        createShift.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Shift newShift = new Shift(vis.getStartTime(), vis.getEndTime(), "Test"); // Create a new instance of
-                                                                                          // the Shift class
-                // Add any additional logic or operations related to the Shift class here
-                System.out.println("Shift created!");
-                System.out.println("Shift Start: " + newShift.startHour);
-                System.out.println("Shift End: " + newShift.endHour);
-                vis.resetStart();
-                vis.resetEnd();
-                ShiftVis.resetButtons();
-            }
-        });
+        mainFrame.add(panel);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
 
-        Button AddDriver = new Button("Create Shift");
-
-        frame.add(vis);
-        frame.add(createShift, BorderLayout.SOUTH); // Add the button to the bottom of the frame
-        frame.setVisible(true);
     }
 }
