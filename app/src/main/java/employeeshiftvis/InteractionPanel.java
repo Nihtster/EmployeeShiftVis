@@ -18,6 +18,8 @@ public class InteractionPanel extends JPanel {
 
     private JPanel schedulePanel;
 
+    private DummyData dData = new DummyData();
+
     public InteractionPanel() {
         setLayout(new BorderLayout());
 
@@ -29,6 +31,14 @@ public class InteractionPanel extends JPanel {
 
         peopleList = new JList<>(peopleListModel);
         routeList = new JList<>(routeListModel);
+
+        for (String person : dData.getPeopleData()) {
+            peopleListModel.addElement(person);
+        }
+
+        for (String route : dData.getRouteData()) {
+            routeListModel.addElement(route);
+        }
 
         // Creation of Routes List and Employees List
         JScrollPane routeScrollPane = new JScrollPane(routeList);
